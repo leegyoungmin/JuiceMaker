@@ -5,15 +5,19 @@
 
 import Foundation
 
+protocol fruitable {
+    func changeStocks(_ inventory: [Fruit: Int])
+}
+
 // 과일 저장소 타입
 class FruitStore {
-	private var inventory: [Fruit: Int] = Fruit.beginningStock {
+    var delegate: fruitable?
+	var inventory: [Fruit: Int] = Fruit.beginningStock {
 		didSet {
-			NotificationCenter.default.post(name: Notification.Name.stockChanged,
-											object: nil,
-											userInfo: inventory)
+            delegate?.changeStocks(inventory)
 		}
 	}
+    
 	
 	func haveStock(for juice: Juice) throws {
 		let needFruitAndStock = juice.needFruitAndStock

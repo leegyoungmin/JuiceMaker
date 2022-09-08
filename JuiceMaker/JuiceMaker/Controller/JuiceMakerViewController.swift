@@ -6,7 +6,8 @@
 import UIKit
 
 class JuiceMakerViewController: UIViewController {
-	private let maker = JuiceMaker()
+    private let fruitStore = FruitStore()
+    lazy var maker = JuiceMaker(fruitStore: fruitStore)
 	
 	@IBOutlet weak var strawberryStockLabel: UILabel!
 	@IBOutlet weak var bananaStockLabel: UILabel!
@@ -16,24 +17,8 @@ class JuiceMakerViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        setUpStockLabels(changedStocks: Fruit.beginningStock)
-		receiveStockChangedNoti()
-	}
-	
-	private func receiveStockChangedNoti() {
-		NotificationCenter.default.addObserver(
-			self,
-			selector: #selector(didChangeStocks(noti:)),
-			name: Notification.Name.stockChanged,
-			object: nil
-		)
-	}
-	
-	@objc func didChangeStocks(noti: Notification) {
-		guard let stocks = noti.userInfo as? [Fruit: Int] else {
-			return
-		}
-		setUpStockLabels(changedStocks: stocks)
+        fruitStore.delegate = self
+        setUpStockLabels(changedStocks: fruitStore.inventory)
 	}
 	
 	private func setUpStockLabels(changedStocks: [Fruit: Int]) {
@@ -80,4 +65,10 @@ class JuiceMakerViewController: UIViewController {
 		
 		present(alertController, animated: true)
 	}
+}
+
+extension JuiceMakerViewController: fruitable {
+    func changeStocks(_ inventory: [Fruit : Int]) {
+        setUpStockLabels(changedStocks: inventory)
+    }
 }
