@@ -11,10 +11,8 @@ class FruitStore {
         return juice.needFruitAndStock.allSatisfy(checkStockAndChangeStock)
     }
     
-    func changeStock(with fruit: Fruit, amount: Int) {
-        guard let remainAmount = inventory[fruit] else {
-            return
-        }
+    func updateStock(with fruit: Fruit, amount: Int) {
+        guard let remainAmount = inventory[fruit] else { return }
         
         inventory.updateValue(remainAmount - abs(amount), forKey: fruit)
     }
@@ -23,12 +21,16 @@ class FruitStore {
         return inventory[fruit]
     }
     
+    func changeStock(with fruit: Fruit, stock: Int) {
+        inventory.updateValue(stock, forKey: fruit)
+    }
+    
     private func checkStockAndChangeStock(with fruit: Fruit, amount: Int) -> Bool {
         guard let remainAmount = inventory[fruit],
               remainAmount >= abs(amount) else {
             return false
         }
-        changeStock(with: fruit, amount: amount)
+        updateStock(with: fruit, amount: amount)
         return true
     }
 }

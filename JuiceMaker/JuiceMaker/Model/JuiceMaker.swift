@@ -16,6 +16,10 @@ struct JuiceMaker {
     }
     
     func updateStock(_ fruit: Fruit, _ stock: Int) {
-        fruitStore.changeStock(with: fruit, amount: stock)
+        fruitStore.updateStock(with: fruit, amount: stock)
+    }
+    
+    func changeStock(_ fruit: Fruit, _ stock: Int) {
+        fruitStore.changeStock(with: fruit, stock: stock)
     }
 }
