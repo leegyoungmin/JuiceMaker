@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1844AF9229A3775D009B7D84 /* AlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1844AF9129A3775D009B7D84 /* AlertBuilder.swift */; };
+		1844AF9429A378D0009B7D84 /* JuiceAlertDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1844AF9329A378D0009B7D84 /* JuiceAlertDirector.swift */; };
 		1859B77428C6D6A00065AA2A /* ModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859B77328C6D6A00065AA2A /* ModifyViewController.swift */; };
 		1859B77628C732310065AA2A /* AlertMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859B77528C732310065AA2A /* AlertMessages.swift */; };
 		18DBC91328BDEFE40024DC1F /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DBC91228BDEFE40024DC1F /* Juice.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1844AF9129A3775D009B7D84 /* AlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBuilder.swift; sourceTree = "<group>"; };
+		1844AF9329A378D0009B7D84 /* JuiceAlertDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceAlertDirector.swift; sourceTree = "<group>"; };
 		1859B77328C6D6A00065AA2A /* ModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyViewController.swift; sourceTree = "<group>"; };
 		1859B77528C732310065AA2A /* AlertMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessages.swift; sourceTree = "<group>"; };
 		18DBC91228BDEFE40024DC1F /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
@@ -51,6 +55,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1844AF9529A37B4A009B7D84 /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				1844AF9129A3775D009B7D84 /* AlertBuilder.swift */,
+				1844AF9629A37B5B009B7D84 /* JuiceAlert */,
+			);
+			path = AlertView;
+			sourceTree = "<group>";
+		};
+		1844AF9629A37B5B009B7D84 /* JuiceAlert */ = {
+			isa = PBXGroup;
+			children = (
+				1844AF9329A378D0009B7D84 /* JuiceAlertDirector.swift */,
+			);
+			path = JuiceAlert;
+			sourceTree = "<group>";
+		};
 		C71CD66D266C7B470038B9CB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +99,7 @@
 		C71CD671266C7B570038B9CB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1844AF9529A37B4A009B7D84 /* AlertView */,
 				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
 				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
@@ -187,6 +209,8 @@
 				18DBC91728BDF0130024DC1F /* StoreError.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* JuiceMakerViewController.swift in Sources */,
 				1859B77628C732310065AA2A /* AlertMessages.swift in Sources */,
+				1844AF9229A3775D009B7D84 /* AlertBuilder.swift in Sources */,
+				1844AF9429A378D0009B7D84 /* JuiceAlertDirector.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				18DBC91528BDEFFC0024DC1F /* Fruit.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,

@@ -40,33 +40,31 @@ extension JuiceMakerViewController: ModifyStockDelegate {
 // UI 관련 메서드
 private extension JuiceMakerViewController {
     func updateStockLabels() {
-        fruitLabels.forEach {
-            if let fruit = Fruit(rawValue: $0.tag),
-               let stock = maker.readStock(fruit) {
-                $0.text = stock.description
-            }
+        fruitLabels.indices.forEach(setStockLabel)
+    }
+    
+    func setStockLabel(index: Int) {
+        if let fruit = Fruit(rawValue: index),
+           let stock = maker.readStock(fruit) {
+            fruitLabels[index].text = stock.description
         }
     }
     
     func showAlertControllerBased(on isMaked: Bool, of juice: Juice) {
-        let titleMessage = AlertMessages.title(by: isMaked)
-        let message = AlertMessages.message(by: isMaked, for: juice)
-        let alertController = UIAlertController(title: titleMessage, message: message, preferredStyle: .alert)
+        updateStockLabels()
         
-        let confirmMessage = AlertMessages.confirmMessage(by: isMaked)
-        let okAction = UIAlertAction(title: confirmMessage, style: .default) { _ in
-            if !isMaked {
+        if isMaked == true {
+            let alert = JuiceAlertDirector().makeSuccessAlert(juice: juice)
+            present(alert, animated: true)
+        }
+        
+        if isMaked == false {
+            let alert = JuiceAlertDirector().makeFailureAlert(juice: juice) { _ in
                 self.presentModifyController()
             }
+            
+            present(alert, animated: true)
         }
-        alertController.addAction(okAction)
-        if !isMaked {
-            let cancelAction = UIAlertAction(title: AlertMessages.failureCancelMessage, style: .default)
-            alertController.addAction(cancelAction)
-        }
-        
-        updateStockLabels()
-        present(alertController, animated: true)
     }
 }
 
