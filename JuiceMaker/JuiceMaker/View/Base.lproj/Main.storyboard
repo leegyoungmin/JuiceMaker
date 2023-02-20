@@ -246,7 +246,7 @@
                         <outletCollection property="fruitLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="CBu-hw-rTH"/>
                         <outletCollection property="fruitLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="fPQ-0f-MlO"/>
                         <outletCollection property="fruitLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="UMf-Uk-y53"/>
-                        <segue destination="WwV-Td-3Bn" kind="presentation" identifier="presentModifyViewController" id="ceU-jM-LXb"/>
+                        <segue destination="WwV-Td-3Bn" kind="presentation" identifier="ModifyViewController" id="ceU-jM-LXb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
