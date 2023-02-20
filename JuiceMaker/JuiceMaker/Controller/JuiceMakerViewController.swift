@@ -7,7 +7,7 @@ import UIKit
 
 final class JuiceMakerViewController: UIViewController {
     private let maker = JuiceMaker()
-    @IBOutlet var fruitLabels: [UILabel]!
+    @IBOutlet private var fruitLabels: [UILabel]!
     
     override func viewDidLoad() {
         super.viewDidLoad()

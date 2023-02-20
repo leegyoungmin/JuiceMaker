@@ -14,8 +14,8 @@ final class ModifyViewController: UIViewController {
     static let identifier = String(describing: ModifyViewController.self)
     weak var delegate: ModifyStockDelegate?
     
-    @IBOutlet var fruitLabels: [UILabel]!
-    @IBOutlet var stockSteppers: [UIStepper]!
+    @IBOutlet private var fruitLabels: [UILabel]!
+    @IBOutlet private var stockSteppers: [UIStepper]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
