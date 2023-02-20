@@ -4,6 +4,8 @@
 //
 
 enum Fruit: Int, CaseIterable {
+    static let baseStock: Int = 10
+    
     case strawberry
     case banana
     case pineapple
@@ -11,10 +13,6 @@ enum Fruit: Int, CaseIterable {
     case mango
     
     static var beginningStock: [Fruit: Int] {
-        var stocks: [Fruit: Int] = [:]
-        self.allCases.forEach {
-            stocks[$0] = 10
-        }
-        return stocks
+        return self.allCases.reduce(into: [:]) { $0[$1] = baseStock }
     }
 }
