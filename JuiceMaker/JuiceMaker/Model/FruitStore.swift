@@ -7,16 +7,17 @@
 class FruitStore {
     private var inventory: [Fruit: Int] = Fruit.beginningStock
     
-    func haveStock(for juice: Juice) throws {
-        let needFruitAndStock = juice.needFruitAndStock
-        
-        for (fruit, stock) in needFruitAndStock {
-            guard let remainingStock = inventory[fruit],
-                  remainingStock >= -stock else {
-                throw StoreError.outOfStock
-            }
+    func haveStock(for juice: Juice) -> Bool {
+        return juice.needFruitAndStock.allSatisfy(checkStock)
+    }
+    
+    private func checkStock(with fruit: Fruit, amount: Int) -> Bool {
+        guard let remainAmount = inventory[fruit],
+              remainAmount >= abs(amount) else {
+            return false
         }
-        changeStock(fruitAndStock: needFruitAndStock)
+        
+        return true
     }
     
     private func changeStock(fruitAndStock: [Fruit: Int]) {

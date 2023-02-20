@@ -8,14 +8,7 @@ struct JuiceMaker {
     private let fruitStore: FruitStore = FruitStore()
     
     func makeJuice(juice: Juice) -> Bool {
-        do {
-            try fruitStore.haveStock(for: juice)
-            return true
-        } catch StoreError.outOfStock {
-            return false
-        } catch {
-            return false
-        }
+        return fruitStore.haveStock(for: juice)
     }
     
     func readStock(_ fruit: Fruit) -> Int? {
