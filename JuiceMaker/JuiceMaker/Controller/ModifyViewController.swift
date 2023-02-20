@@ -10,7 +10,7 @@ protocol ModifyStockDelegate: AnyObject {
     func modifyViewController(with viewController: ModifyViewController, by fruit: Fruit, to stock: Int)
 }
 
-class ModifyViewController: UIViewController {
+final class ModifyViewController: UIViewController {
     static let identifier = String(describing: ModifyViewController.self)
     weak var delegate: ModifyStockDelegate?
     
