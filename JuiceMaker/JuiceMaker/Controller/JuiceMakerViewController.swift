@@ -27,11 +27,18 @@ final class JuiceMakerViewController: UIViewController {
 
 // Delegate 관련 메서드
 extension JuiceMakerViewController: ModifyStockDelegate {
-    func modifyViewController(with viewController: ModifyViewController, stockOf fruit: Fruit) -> Int? {
+    func modifyViewController(
+        with viewController: ModifyViewController,
+        stockOf fruit: Fruit
+    ) -> Int? {
         return maker.readStock(fruit)
     }
     
-    func modifyViewController(with viewController: ModifyViewController, by fruit: Fruit, to stock: Int) {
+    func modifyViewController(
+        with viewController: ModifyViewController,
+        by fruit: Fruit,
+        to stock: Int
+    ) {
         maker.changeStock(fruit, stock)
         updateStockLabels()
     }

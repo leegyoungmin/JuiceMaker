@@ -6,8 +6,15 @@
 import UIKit
 
 protocol ModifyStockDelegate: AnyObject {
-    func modifyViewController(with viewController: ModifyViewController, stockOf fruit: Fruit) -> Int?
-    func modifyViewController(with viewController: ModifyViewController, by fruit: Fruit, to stock: Int)
+    func modifyViewController(
+        with viewController: ModifyViewController,
+        stockOf fruit: Fruit
+    ) -> Int?
+    func modifyViewController(
+        with viewController: ModifyViewController,
+        by fruit: Fruit,
+        to stock: Int
+    )
 }
 
 final class ModifyViewController: UIViewController {
