@@ -37,43 +37,11 @@ extension JuiceMakerViewController: ModifyStockDelegate {
     }
 }
 
-// UI 관련 메서드
-private extension JuiceMakerViewController {
-    func updateStockLabels() {
-        fruitLabels.indices.forEach(setStockLabel)
-    }
-    
-    func setStockLabel(index: Int) {
-        if let fruit = Fruit(rawValue: index),
-           let stock = maker.readStock(fruit) {
-            fruitLabels[index].text = stock.description
-        }
-    }
-    
-    func showAlertControllerBased(on isMaked: Bool, of juice: Juice) {
-        updateStockLabels()
-        
-        if isMaked == true {
-            let alert = JuiceAlertDirector().makeSuccessAlert(juice: juice)
-            present(alert, animated: true)
-        }
-        
-        if isMaked == false {
-            let alert = JuiceAlertDirector().makeFailureAlert(juice: juice) { _ in
-                self.presentModifyController()
-            }
-            
-            present(alert, animated: true)
-        }
-    }
-}
-
 // 버튼 관련 메서드
 private extension JuiceMakerViewController {
     @IBAction func didTapJuiceButton(_ sender: UIButton) {
-        guard let orderedJuice = Juice(rawValue: sender.tag) else {
-            return
-        }
+        guard let orderedJuice = Juice(rawValue: sender.tag) else { return }
+        
         let result = maker.makeJuice(juice: orderedJuice)
         showAlertControllerBased(on: result, of: orderedJuice)
     }
@@ -87,5 +55,36 @@ private extension JuiceMakerViewController {
     
     func presentModifyController() {
         self.performSegue(withIdentifier: ModifyViewController.identifier, sender: nil)
+    }
+}
+
+// UI 관련 메서드
+private extension JuiceMakerViewController {
+    func updateStockLabels() {
+        fruitLabels.indices.forEach(setStockLabel)
+    }
+    
+    func setStockLabel(index: Int) {
+        if let fruit = Fruit(rawValue: index),
+           let stock = maker.readStock(fruit) {
+            fruitLabels[index].text = stock.description
+        }
+    }
+    
+    func showAlertControllerBased(on isSuccess: Bool, of juice: Juice) {
+        updateStockLabels()
+        
+        if isSuccess == true {
+            let alert = JuiceAlertDirector().makeSuccessAlert(juice: juice)
+            present(alert, animated: true)
+        }
+        
+        if isSuccess == false {
+            let alert = JuiceAlertDirector().makeFailureAlert(juice: juice) { _ in
+                self.presentModifyController()
+            }
+            
+            present(alert, animated: true)
+        }
     }
 }

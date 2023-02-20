@@ -86,12 +86,12 @@
 		C71CD66F266C7B500038B9CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
+				1859B77528C732310065AA2A /* AlertMessages.swift */,
+				18DBC91428BDEFFC0024DC1F /* Fruit.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
 				18DBC91228BDEFE40024DC1F /* Juice.swift */,
-				18DBC91428BDEFFC0024DC1F /* Fruit.swift */,
+				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				18DBC91628BDF0130024DC1F /* StoreError.swift */,
-				1859B77528C732310065AA2A /* AlertMessages.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -100,9 +100,9 @@
 			isa = PBXGroup;
 			children = (
 				1844AF9529A37B4A009B7D84 /* AlertView */,
-				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
 				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
+				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
