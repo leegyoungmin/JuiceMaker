@@ -6,12 +6,12 @@
 import UIKit
 
 protocol ModifyStockDelegate: AnyObject {
-    func readCurrentStock(_ fruit: Fruit) -> Int?
-    func updateStock(by fruit: Fruit, to stock: Int)
+    func modifyViewController(with viewController: ModifyViewController, stockOf fruit: Fruit) -> Int?
+    func modifyViewController(with viewController: ModifyViewController, by fruit: Fruit, to stock: Int)
 }
 
 class ModifyViewController: UIViewController {
-    static let identifier = "presentModifyViewController"
+    static let identifier = String(describing: ModifyViewController.self)
     weak var delegate: ModifyStockDelegate?
     
     @IBOutlet var fruitLabels: [UILabel]!
@@ -20,31 +20,22 @@ class ModifyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         changeNavBackgroundColor()
-        setUpLabels()
-        setUpStepper()
+        setUpStocks()
     }
 }
 
 // UI 관련 메서드
 private extension ModifyViewController {
     func changeNavBackgroundColor() {
-        navigationController?.navigationBar.backgroundColor = .systemGray5
+        navigationController?.navigationBar.backgroundColor = .systemBackground
     }
     
-    func setUpLabels() {
-        fruitLabels.forEach { // 5
-            if let fruit = Fruit(rawValue: $0.tag),
-               let stock = delegate?.readCurrentStock(fruit) {
-                $0.text = stock.description
-            }
-        }
-    }
-    
-    func setUpStepper() {
-        stockSteppers.forEach {
-            if let fruit = Fruit(rawValue: $0.tag),
-               let stock = delegate?.readCurrentStock(fruit) {
-                $0.value = Double(stock)
+    func setUpStocks() {
+        fruitLabels.indices.forEach {
+            if let fruit = Fruit(rawValue: $0),
+               let stock = delegate?.modifyViewController(with: self, stockOf: fruit) {
+                fruitLabels[$0].text = stock.description
+                stockSteppers[$0].value = Double(stock)
             }
         }
     }
@@ -54,8 +45,8 @@ private extension ModifyViewController {
 private extension ModifyViewController {
     @IBAction func didTappedStepper(_ sender: UIStepper) {
         if let fruit = Fruit(rawValue: sender.tag) {
-            delegate?.updateStock(by: fruit, to: Int(sender.value))
-            setUpLabels()
+            delegate?.modifyViewController(with: self, by: fruit, to: Int(sender.value))
+            setUpStocks()
         }
     }
 }
